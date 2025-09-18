@@ -29,7 +29,6 @@ class JSONStorage {
 class ConfigLoader {
     constructor(path) {
         this.searches = new Array();
-        this.searchHistory = [];
         this.storage = new JSONStorage(path);
     }
     
@@ -52,6 +51,7 @@ class ConfigLoader {
             const result = await this.storage.load();
             if (!result.success) throw new Error(result.error);
             let importedCount = 0;
+            this.searches.length = 0;
             
             for (const [_, conf] of Object.entries(result.data.filters)) {
                 const params = this.buildSearchQueryParams(conf.params);

@@ -16,7 +16,12 @@ class DepopSearch {
         this.API_URL = process.env.API_URL;
         this.ITEM_ENDPOINT = process.env.ITEM_ENDPOINT
 
-        this.ua = new UserAgent({ deviceCategory: 'desktop' }).toString();
+        // Cache user agent to prevent memory overhead
+        this.ua = this._generateUserAgent();
+    }
+
+    _generateUserAgent() {
+        return new UserAgent({ deviceCategory: 'desktop' }).toString();
     }
 
     //fetch request handler
