@@ -1,0 +1,38 @@
+{
+  "filters": [
+    {
+      "name": "adidas",
+      "channel": "xxxxx",
+      "delay": 30,
+      "params": {
+        "what": "adidas fur jacket",
+        "cursor": "",
+        "items_per_page": 1,
+        "country": "us",
+        "sort": "newlyListed",
+        "currency": "USD",
+        "force_fee_calculation": false,
+        "from": "in_country_search"
+      }
+    },
+    {
+      "name": "zara",
+      "channel": "xxxxxx",
+      "delay": 30,
+      "params": {
+        "what": "zara",
+        "cursor": "",
+        "items_per_page": 1,
+        "country": "us",
+        "sort": "newlyListed",
+        "currency": "USD",
+        "force_fee_calculation": false,
+        "from": "in_country_search"
+      }
+    }
+  ],
+  "meta": {
+    "exported_at": "2025-09-18T00:35:48.946Z",
+    "version": "1.0"
+  }
+}

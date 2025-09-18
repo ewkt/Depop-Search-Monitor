@@ -1,0 +1,16 @@
+{
+  "name": "depop.js",
+  "author": "@ewkt",
+  "version": "1.13.1",
+  "description": "notifications for depop!",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "undici": "^6.19.8",
+    "uuid": "^13.0.0",
+    "user-agents": "^1.0.1016"
+  }
+}
