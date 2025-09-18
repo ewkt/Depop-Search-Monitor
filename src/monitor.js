@@ -5,6 +5,8 @@ import { discordSender } from './discord/message.js';
 export class DepopMonitor {
     constructor() {
         this.processedIds = new Set();
+        this.maxProcessedIds = 10000; // Limit to prevent memory leaks
+        this.cleanupInterval = null;
     }
 
     //load searches to monitor from json config
@@ -15,7 +17,7 @@ export class DepopMonitor {
             await configLoader.exportSearches(configLoader.searchesList);
         } else {
             console.error('\nImport failed:', result.error);
-            process.exit(1); // Stop the code execution
+            process.exit(1);
         }
     }
 
@@ -29,6 +31,7 @@ export class DepopMonitor {
                     inits.forEach(item => { this.processedIds.add(item.id); });
                 } catch (err) {
                     console.error('\nError in initializing:', err);
+                    process.exit(1);
                 }
             }, index * 1000);
         });
@@ -47,8 +50,21 @@ export class DepopMonitor {
                 }
             } catch (err) {
                 console.error('\nError during search cycle for', search.name, err);
+                process.exit(1);
             }
         }, search.delay * 1000);
+    }
+
+    cleanup() {
+        if (this.processedIds.size > this.maxProcessedIds * 0.8) {
+            const toDelete = Math.floor(this.processedIds.size * 0.3);
+            const iterator = this.processedIds.values();
+            for (let i = 0; i < toDelete; i++) {
+                const value = iterator.next().value;
+                if (value) this.processedIds.delete(value);
+            }
+            console.log("Memory cleanup");
+        }
     }
 
     async start(client) {
@@ -59,6 +75,7 @@ export class DepopMonitor {
                 this.runSearchCycle(client, search);
             }, index * 1000);
         });
+        setInterval(() => {this.cleanup()}, 3600000);
     }
 }
 
