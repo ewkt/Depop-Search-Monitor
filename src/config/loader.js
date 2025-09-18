@@ -1,4 +1,6 @@
 import fs from 'fs/promises';
+import dotenv from 'dotenv';
+dotenv.config();
 
 class JSONStorage {
     constructor(filePath) {
