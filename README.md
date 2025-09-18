@@ -9,11 +9,13 @@
 ## Setup
 
 1) Create a bot with message permissions onto the server you want to recieve the messages in.
-2) Set the bot token in the `.env` file you cn cretate from the `.env.example` file.
-3) In `searches.json` set the channel ids of the channels you want each monitored search to be in.
-4) Customise the fields in the JSON to filter for searches you want specifically!
+2) Clone this repo, and run `npm i` in the folder yo setup dependancies
+3) Set the bot token in the `.env` file you cn cretate from the `.env.example` file.
+4) In `searches.json` set the channel ids of the channels you want each monitored search to be in.
+5) Customise the fields in the JSON to filter for searches you want specifically (*)
+6) Run the code `node index.js`
 
-Available search params that can be set in the `"params"` field of each serach to monitor in the JSON are:
+(*) Available search params that can be set in the `"params"` field of each serach to monitor in the JSON are:
 
             what
             cursor
